@@ -84,6 +84,488 @@
         </div>
     </section>
 
+
+    <!-- ================================================== -->
+<!-- SEÇÃO: CARROSSEL "Conheça o Velmo Black"          -->
+<!-- Cole esta seção onde quiser no seu index.html      -->
+<!-- Sem dependências externas — vanilla JS puro        -->
+<!-- ================================================== -->
+
+<section class="velmo-carousel-section" id="conheca">
+
+    <div class="velmo-carousel-header">
+        <p class="velmo-carousel-label">Conheça <span class="velmo-carousel-label-highlight">Velmo Black</span></p>
+    </div>
+
+    <div class="velmo-carousel-wrapper" aria-label="Carrossel de imagens Velmo Black" role="region">
+
+        <button class="velmo-carousel-btn velmo-carousel-btn-prev" aria-label="Slide anterior" id="velmoCarouselPrev">
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M646 125C629 125 613 133 604 142L308 442C296 454 292 471 292 487 292 504 296 521 308 533L604 854C617 867 629 875 646 875 663 875 679 871 692 858 704 846 713 829 713 812 713 796 708 779 692 767L438 487 692 225C700 217 708 204 708 187 708 171 704 154 692 142 675 129 663 125 646 125Z"/>
+            </svg>
+        </button>
+
+        <div class="velmo-carousel-viewport" id="velmoCarouselViewport">
+            <div class="velmo-carousel-track" id="velmoCarouselTrack">
+
+                <!-- Slides 1–4: eager (visíveis imediatamente no desktop) -->
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__3-13.webp" alt="Velmo Black resultado 1" loading="eager" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__WhatsApp-Image-2026-03-06-at-23.01.07-2.webp" alt="Velmo Black resultado 2" loading="eager" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__1-15.webp" alt="Velmo Black resultado 3" loading="eager" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__6-11.webp" alt="Velmo Black resultado 4" loading="eager" decoding="async"></figure>
+                </div>
+
+                <!-- Slides 5–10: lazy (fora da viewport inicial) -->
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__4-13.webp" alt="Velmo Black resultado 5" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__WhatsApp-Image-2026-03-06-at-23.01.06.webp" alt="Velmo Black resultado 6" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__5-11.webp" alt="Velmo Black resultado 7" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__2-14.webp" alt="Velmo Black resultado 8" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__WhatsApp-Image-2026-03-06-at-23.01.07.webp" alt="Velmo Black resultado 9" loading="lazy" decoding="async"></figure>
+                </div>
+                <div class="velmo-carousel-slide">
+                    <figure><img src="https://velmoblackoficial.com.br/wp-content/uploads/2026/04/AnyConv.com__7-5.webp" alt="Velmo Black resultado 10" loading="lazy" decoding="async"></figure>
+                </div>
+
+            </div>
+        </div>
+
+        <button class="velmo-carousel-btn velmo-carousel-btn-next" aria-label="Próximo slide" id="velmoCarouselNext">
+            <svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M696 533C708 521 713 504 713 487 713 471 708 454 696 446L400 146C388 133 375 125 354 125 338 125 325 129 313 142 300 154 292 171 292 187 292 204 296 221 308 233L563 492 304 771C292 783 288 800 288 817 288 833 296 850 308 863 321 871 338 875 354 875 371 875 388 867 400 854L696 533Z"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="velmo-carousel-pagination" id="velmoCarouselPagination" role="tablist" aria-label="Slides"></div>
+
+    <div class="velmo-carousel-cta-wrap">
+        <a href="#comprar1" class="velmo-carousel-cta">COMPRAR AGORA</a>
+    </div>
+
+</section>
+
+<style>
+/* ─── Seção ─── */
+.velmo-carousel-section {
+    position: relative;
+    width: 100%;
+    background: var(--black-absolute, #050505);
+    padding: 80px 0 60px;
+    overflow: hidden;
+}
+
+.velmo-carousel-section::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(0,240,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ─── Título ─── */
+.velmo-carousel-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.velmo-carousel-label {
+    font-family: 'Sora', 'Poppins', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.velmo-carousel-label-highlight {
+    color: #53bcbb;
+}
+
+/* ─── Wrapper ─── */
+.velmo-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 52px;
+}
+
+/* ─── Viewport ─── */
+.velmo-carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 12px;
+    /* Reserva altura mínima para evitar layout shift antes das imagens carregarem */
+    min-height: 180px;
+}
+
+/* ─── Track ─── */
+.velmo-carousel-track {
+    display: flex;
+    gap: 16px;
+    /* Transição só ativa depois que o JS inicializa (evita flash) */
+    will-change: transform;
+}
+
+.velmo-carousel-track.velmo-animated {
+    transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ─── Slide ─── */
+.velmo-carousel-slide {
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(0,240,255,0.08);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    /* min-width evita que o slide colapse antes do JS rodar */
+    min-width: 100px;
+}
+
+.velmo-carousel-slide:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: rgba(0,240,255,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,240,255,0.1);
+}
+
+.velmo-carousel-slide figure {
+    margin: 0;
+    padding: 0;
+    /* aspect-ratio fixo garante que o espaço é reservado antes da imagem carregar */
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: rgba(255,255,255,0.04);
+}
+
+.velmo-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    /* Placeholder enquanto carrega */
+    background: rgba(0,240,255,0.04);
+}
+
+.velmo-carousel-slide:hover img {
+    transform: scale(1.05);
+}
+
+/* ─── Botões seta ─── */
+.velmo-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,240,255,0.25);
+    background: rgba(5,5,5,0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.velmo-carousel-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: rgba(0,240,255,0.7);
+    transition: fill 0.3s ease;
+}
+
+.velmo-carousel-btn:hover {
+    border-color: rgba(0,240,255,0.6);
+    background: rgba(0,240,255,0.08);
+    box-shadow: 0 0 16px rgba(0,240,255,0.2);
+}
+
+.velmo-carousel-btn:hover svg { fill: #00F0FF; }
+
+.velmo-carousel-btn-prev { left: 4px; }
+.velmo-carousel-btn-next { right: 4px; }
+
+/* ─── Paginação ─── */
+.velmo-carousel-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.velmo-carousel-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.velmo-carousel-bullet:hover { background: rgba(0,240,255,0.4); }
+
+.velmo-carousel-bullet.active {
+    background: #00F0FF;
+    border-color: #00F0FF;
+    box-shadow: 0 0 8px rgba(0,240,255,0.6);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* ─── CTA ─── */
+.velmo-carousel-cta-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+.velmo-carousel-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00F0FF 0%, #00C8D7 100%);
+    color: #050505;
+    font-family: 'Sora', 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 48px;
+    border-radius: 60px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 30px rgba(0,240,255,0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.velmo-carousel-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    animation: velmoCarouselShine 2.5s ease-in-out infinite;
+}
+
+@keyframes velmoCarouselShine {
+    0%   { left: -100%; }
+    100% { left:  100%; }
+}
+
+.velmo-carousel-cta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 48px rgba(0,240,255,0.55);
+}
+
+/* ─── Responsividade ─── */
+@media (max-width: 768px) {
+    .velmo-carousel-section { padding: 60px 0 48px; }
+    .velmo-carousel-wrapper { padding: 0 40px; }
+    .velmo-carousel-btn     { width: 34px; height: 34px; }
+    .velmo-carousel-btn svg { width: 15px; height: 15px; }
+    .velmo-carousel-cta     { padding: 16px 32px; font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+    .velmo-carousel-wrapper { padding: 0 36px; }
+    .velmo-carousel-cta     { width: 100%; max-width: 340px; }
+}
+</style>
+
+<script>
+(function () {
+    var TOTAL      = 10;
+    var GAP        = 16;
+    var AUTO_DELAY = 2500;
+    var PAUSE_MS   = 8000;
+
+    var track      = document.getElementById('velmoCarouselTrack');
+    var viewport   = document.getElementById('velmoCarouselViewport');
+    var btnPrev    = document.getElementById('velmoCarouselPrev');
+    var btnNext    = document.getElementById('velmoCarouselNext');
+    var pagination = document.getElementById('velmoCarouselPagination');
+
+    if (!track || !viewport) return;
+
+    var slides    = track.querySelectorAll('.velmo-carousel-slide');
+    var current   = 0;
+    var timer     = null;
+    var pauseTimer= null;
+    var isPaused  = false;
+
+    /* ── Slides visíveis conforme largura ── */
+    function visibleCount() {
+        var w = viewport.offsetWidth;
+        if (w >= 1024) return 4;
+        if (w >= 640)  return 3;
+        if (w >= 400)  return 2;
+        return 1;
+    }
+
+    /* ── Calcula e aplica largura dos slides ── */
+    function calcSlideWidth() {
+        var vis    = visibleCount();
+        var vw     = viewport.offsetWidth;
+        var sw     = (vw - GAP * (vis - 1)) / vis;
+        slides.forEach(function(s) { s.style.width = sw + 'px'; });
+        return sw;
+    }
+
+    /* ── Posiciona o track sem animação ── */
+    function positionTrack(index, animated) {
+        var sw     = slides[0] ? slides[0].offsetWidth : calcSlideWidth();
+        var offset = index * (sw + GAP);
+        if (animated) {
+            track.classList.add('velmo-animated');
+        } else {
+            track.classList.remove('velmo-animated');
+        }
+        track.style.transform = 'translateX(-' + offset + 'px)';
+    }
+
+    /* ── Atualiza bullets ── */
+    function updateBullets() {
+        pagination.querySelectorAll('.velmo-carousel-bullet').forEach(function(b, i) {
+            b.classList.toggle('active', i === current);
+            b.setAttribute('aria-selected', i === current ? 'true' : 'false');
+        });
+    }
+
+    /* ── Navega ── */
+    function goTo(index, animated) {
+        var vis = visibleCount();
+        var max = TOTAL - vis;
+        if (index < 0)   index = max;
+        if (index > max) index = 0;
+        current = index;
+        positionTrack(current, animated !== false);
+        updateBullets();
+    }
+
+    /* ── Autoplay ── */
+    function startAuto() {
+        stopAuto();
+        timer = setInterval(function() {
+            if (!isPaused) goTo(current + 1);
+        }, AUTO_DELAY);
+    }
+
+    function stopAuto() {
+        clearInterval(timer);
+        timer = null;
+    }
+
+    function userPause() {
+        isPaused = true;
+        clearTimeout(pauseTimer);
+        pauseTimer = setTimeout(function() { isPaused = false; }, PAUSE_MS);
+    }
+
+    /* ── Hover pause ── */
+    viewport.addEventListener('mouseenter', function() { isPaused = true;  });
+    viewport.addEventListener('mouseleave', function() { isPaused = false; });
+
+    /* ── Botões ── */
+    btnPrev.addEventListener('click', function() { goTo(current - 1); userPause(); });
+    btnNext.addEventListener('click', function() { goTo(current + 1); userPause(); });
+
+    /* ── Swipe touch ── */
+    var tStart = 0;
+    viewport.addEventListener('touchstart', function(e) {
+        tStart = e.changedTouches[0].screenX;
+    }, { passive: true });
+    viewport.addEventListener('touchend', function(e) {
+        var diff = tStart - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); userPause(); }
+    }, { passive: true });
+
+    /* ── Resize: recalcula sem animação ── */
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            calcSlideWidth();
+            goTo(current, false); /* reposiciona sem transição */
+        }, 120);
+    });
+
+    /* ── Cria bullets ── */
+    function buildPagination() {
+        pagination.innerHTML = '';
+        for (var i = 0; i < TOTAL; i++) {
+            (function(idx) {
+                var btn = document.createElement('button');
+                btn.className = 'velmo-carousel-bullet' + (idx === 0 ? ' active' : '');
+                btn.setAttribute('role', 'tab');
+                btn.setAttribute('aria-label', 'Ir para o slide ' + (idx + 1));
+                btn.addEventListener('click', function() { goTo(idx); userPause(); });
+                pagination.appendChild(btn);
+            })(i);
+        }
+    }
+
+    /* ── Init robusto: espera DOM + imagens eager prontas ── */
+    function init() {
+        calcSlideWidth();
+        buildPagination();
+        goTo(0, false);         /* posiciona sem animação na primeira vez */
+        startAuto();
+    }
+
+    /*
+     * Usa requestAnimationFrame duplo para garantir que o browser
+     * já fez o layout (offsetWidth correto) antes de calcular.
+     * Não depende de window.load, então não fica bloqueado por
+     * recursos externos (iframes, fontes etc.).
+     */
+    requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+            init();
+        });
+    });
+
+})();
+</script>
+    
     <!-- ========================================== -->
     <!-- 2. CÁPSULAS -->
     <!-- ========================================== -->
