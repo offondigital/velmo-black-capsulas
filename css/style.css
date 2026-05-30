@@ -522,3 +522,63 @@ img { max-width: 100%; height: auto; display: block; }
     .whatsapp-pulse { width: 50px; height: 50px; }
     .whatsapp-tooltip { display: none; }
 }
+/* ================================================== */
+/* CARROSSEL — velmo-carousel                         */
+/* ================================================== */
+.velmo-carousel-section {
+    position: relative;
+    width: 100%;
+    background: var(--black-absolute, #050505);
+    padding: 80px 0 60px;
+    overflow: hidden;
+}
+.velmo-carousel-section::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(0,240,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+.velmo-carousel-header { text-align: center; margin-bottom: 40px; padding: 0 20px; }
+.velmo-carousel-label { font-family: 'Sora', 'Poppins', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: #fff; margin: 0; letter-spacing: 0.02em; }
+.velmo-carousel-label-highlight { color: #53bcbb; }
+.velmo-carousel-wrapper { position: relative; display: flex; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 52px; }
+.velmo-carousel-viewport { overflow: hidden; width: 100%; border-radius: 12px; min-height: 180px; }
+.velmo-carousel-track { display: flex; gap: 16px; will-change: transform; }
+.velmo-carousel-track.velmo-animated { transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1); }
+.velmo-carousel-slide { flex-shrink: 0; border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.03); border: 1px solid rgba(0,240,255,0.08); transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; cursor: pointer; min-width: 100px; }
+.velmo-carousel-slide:hover { transform: translateY(-4px) scale(1.02); border-color: rgba(0,240,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(0,240,255,0.1); }
+.velmo-carousel-slide figure { margin: 0; padding: 0; aspect-ratio: 3 / 4; overflow: hidden; background: rgba(255,255,255,0.04); }
+.velmo-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; background: rgba(0,240,255,0.04); }
+.velmo-carousel-slide:hover img { transform: scale(1.05); }
+.velmo-carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(0,240,255,0.25); background: rgba(5,5,5,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; padding: 0; flex-shrink: 0; }
+.velmo-carousel-btn svg { width: 18px; height: 18px; fill: rgba(0,240,255,0.7); transition: fill 0.3s ease; }
+.velmo-carousel-btn:hover { border-color: rgba(0,240,255,0.6); background: rgba(0,240,255,0.08); box-shadow: 0 0 16px rgba(0,240,255,0.2); }
+.velmo-carousel-btn:hover svg { fill: #00F0FF; }
+.velmo-carousel-btn-prev { left: 4px; }
+.velmo-carousel-btn-next { right: 4px; }
+.velmo-carousel-pagination { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 24px; flex-wrap: wrap; padding: 0 20px; }
+.velmo-carousel-bullet { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: all 0.3s ease; padding: 0; flex-shrink: 0; }
+.velmo-carousel-bullet:hover { background: rgba(0,240,255,0.4); }
+.velmo-carousel-bullet.active { background: #00F0FF; border-color: #00F0FF; box-shadow: 0 0 8px rgba(0,240,255,0.6); width: 24px; border-radius: 4px; }
+.velmo-carousel-cta-wrap { display: flex; justify-content: center; margin-top: 40px; padding: 0 20px; }
+.velmo-carousel-cta { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #00F0FF 0%, #00C8D7 100%); color: #050505; font-family: 'Sora', 'Poppins', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 18px 48px; border-radius: 60px; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 0 30px rgba(0,240,255,0.35); position: relative; overflow: hidden; }
+.velmo-carousel-cta::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); animation: velmoCarouselShine 2.5s ease-in-out infinite; }
+@keyframes velmoCarouselShine { 0% { left: -100%; } 100% { left: 100%; } }
+.velmo-carousel-cta:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 48px rgba(0,240,255,0.55); }
+@media (max-width: 768px) {
+    .velmo-carousel-section { padding: 60px 0 48px; }
+    .velmo-carousel-wrapper { padding: 0 40px; }
+    .velmo-carousel-btn { width: 34px; height: 34px; }
+    .velmo-carousel-btn svg { width: 15px; height: 15px; }
+    .velmo-carousel-cta { padding: 16px 32px; font-size: 0.9rem; }
+}
+@media (max-width: 480px) {
+    .velmo-carousel-wrapper { padding: 0 36px; }
+    .velmo-carousel-cta { width: 100%; max-width: 340px; }
+}
