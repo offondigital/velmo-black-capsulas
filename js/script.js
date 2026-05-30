@@ -194,3 +194,130 @@
     }
 
 })();
+/* ── Carrossel "Conheça o Velmo Black" ── */
+(function () {
+    var TOTAL      = 10;
+    var GAP        = 16;
+    var AUTO_DELAY = 2500;
+    var PAUSE_MS   = 8000;
+
+    var track      = document.getElementById('velmoCarouselTrack');
+    var viewport   = document.getElementById('velmoCarouselViewport');
+    var btnPrev    = document.getElementById('velmoCarouselPrev');
+    var btnNext    = document.getElementById('velmoCarouselNext');
+    var pagination = document.getElementById('velmoCarouselPagination');
+
+    if (!track || !viewport) return;
+
+    var slides    = track.querySelectorAll('.velmo-carousel-slide');
+    var current   = 0;
+    var timer     = null;
+    var pauseTimer= null;
+    var isPaused  = false;
+
+    function visibleCount() {
+        var w = viewport.offsetWidth;
+        if (w >= 1024) return 4;
+        if (w >= 640)  return 3;
+        if (w >= 400)  return 2;
+        return 1;
+    }
+
+    function calcSlideWidth() {
+        var vis = visibleCount();
+        var vw  = viewport.offsetWidth;
+        var sw  = (vw - GAP * (vis - 1)) / vis;
+        slides.forEach(function(s) { s.style.width = sw + 'px'; });
+        return sw;
+    }
+
+    function positionTrack(index, animated) {
+        var sw     = slides[0] ? slides[0].offsetWidth : calcSlideWidth();
+        var offset = index * (sw + GAP);
+        if (animated) { track.classList.add('velmo-animated'); }
+        else          { track.classList.remove('velmo-animated'); }
+        track.style.transform = 'translateX(-' + offset + 'px)';
+    }
+
+    function updateBullets() {
+        pagination.querySelectorAll('.velmo-carousel-bullet').forEach(function(b, i) {
+            b.classList.toggle('active', i === current);
+            b.setAttribute('aria-selected', i === current ? 'true' : 'false');
+        });
+    }
+
+    function goTo(index, animated) {
+        var vis = visibleCount();
+        var max = TOTAL - vis;
+        if (index < 0)   index = max;
+        if (index > max) index = 0;
+        current = index;
+        positionTrack(current, animated !== false);
+        updateBullets();
+    }
+
+    function startAuto() {
+        stopAuto();
+        timer = setInterval(function() { if (!isPaused) goTo(current + 1); }, AUTO_DELAY);
+    }
+
+    function stopAuto() { clearInterval(timer); timer = null; }
+
+    function userPause() {
+        isPaused = true;
+        clearTimeout(pauseTimer);
+        pauseTimer = setTimeout(function() { isPaused = false; }, PAUSE_MS);
+    }
+
+    viewport.addEventListener('mouseenter', function() { isPaused = true; });
+    viewport.addEventListener('mouseleave', function() { isPaused = false; });
+    btnPrev.addEventListener('click', function() { goTo(current - 1); userPause(); });
+    btnNext.addEventListener('click', function() { goTo(current + 1); userPause(); });
+
+    /* Swipe touch */
+    var tStart = 0;
+    viewport.addEventListener('touchstart', function(e) { tStart = e.changedTouches[0].screenX; }, { passive: true });
+    viewport.addEventListener('touchend',   function(e) {
+        var diff = tStart - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); userPause(); }
+    }, { passive: true });
+
+    /* Resize */
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() { calcSlideWidth(); goTo(current, false); }, 120);
+    });
+
+    /* Clique no vídeo abre o reel do Instagram */
+    document.querySelectorAll('.video-thumbnail[data-video-url]').forEach(function(el) {
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', function() {
+            window.open(el.getAttribute('data-video-url'), '_blank', 'noopener,noreferrer');
+        });
+    });
+
+    /* Bullets */
+    function buildPagination() {
+        pagination.innerHTML = '';
+        for (var i = 0; i < TOTAL; i++) {
+            (function(idx) {
+                var btn = document.createElement('button');
+                btn.className = 'velmo-carousel-bullet' + (idx === 0 ? ' active' : '');
+                btn.setAttribute('role', 'tab');
+                btn.setAttribute('aria-label', 'Ir para o slide ' + (idx + 1));
+                btn.addEventListener('click', function() { goTo(idx); userPause(); });
+                pagination.appendChild(btn);
+            })(i);
+        }
+    }
+
+    function init() {
+        calcSlideWidth();
+        buildPagination();
+        goTo(0, false);
+        startAuto();
+    }
+
+    requestAnimationFrame(function() { requestAnimationFrame(function() { init(); }); });
+})();
